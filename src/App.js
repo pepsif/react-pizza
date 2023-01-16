@@ -21,7 +21,7 @@ function App() {
           <div className = "content__items">
            {
             pizzasData.pizzas.map(obj => 
-              <PizzaBlock title={obj.title} price={obj.price} imageUrl={obj.imageUrl}/>
+              <PizzaBlock {...obj}/>
             )
             }
            
