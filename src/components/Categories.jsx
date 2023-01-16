@@ -12,7 +12,11 @@ let categories = ['Все','Мясные','Вегетарианская','Гри
       <div className = "categories">
               <ul>
                 {categories.map( (el,index) =>{
-                return  <li onClick={()=>{onclickCategory(index)}} className = {activeIndex === index ? "active" : ''}>{el}</li>
+                return  <li onClick={()=>{onclickCategory(index)}} 
+                className = {activeIndex === index ? "active" : ''}
+                key={index}
+                >{el}</li>
+                
                 })}
                 </ul>
             </div>
