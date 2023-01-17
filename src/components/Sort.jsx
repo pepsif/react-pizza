@@ -5,6 +5,10 @@ const Sort = () => {
   const [openSortModal, setOpenSortModal] = React.useState(false);
   const [modalOption, setActiveModalOption ] = React.useState(0)
   
+  const onClickOption = (i) => {
+    setActiveModalOption(i);
+    setOpenSortModal(false)
+  }
   return (
     <div className="sort">
       <div className="sort__label">
@@ -21,14 +25,14 @@ const Sort = () => {
           />
         </svg>
         <b>Сортировка по:</b>
-        <span onClick={() => setOpenSortModal(!openSortModal)}>популярности</span>
+        <span onClick={() => setOpenSortModal(!openSortModal)}>{options[modalOption]}</span>
       </div>
       {
       openSortModal && (
         <div className="sort__popup">
           <ul>
             {
-              options.map((el,i) =>  <li onClick={() => setActiveModalOption(i)}
+              options.map((el,i) =>  <li onClick={() => onClickOption(i)}
               className={modalOption === i ? 'active':''} 
               key={i}>{el}</li> 
               )
