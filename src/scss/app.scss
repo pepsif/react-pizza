@@ -20,6 +20,11 @@ body {
 .content {
   padding: 40px 0;
 
+  @media (max-width:733px) {
+    padding: 8px 12px;  
+      
+  }
+
   &__title {
     margin: 35px 0;
   }
