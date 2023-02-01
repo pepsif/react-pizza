@@ -1,12 +1,11 @@
 import React from "react";
 
-const Sort = () => {
+const Sort = ({ sortModalOptionId, setSortActiveModalOption }) => {
   const options = ['популярности','цене','алфавиту'];
   const [openSortModal, setOpenSortModal] = React.useState(false);
-  const [modalOption, setActiveModalOption ] = React.useState(0)
-  
-  const onClickOption = (i) => {
-    setActiveModalOption(i);
+
+    const onClickOption = (i) => {
+    setSortActiveModalOption(i);
     setOpenSortModal(false)
   }
   return (
@@ -25,7 +24,8 @@ const Sort = () => {
           />
         </svg>
         <b>Сортировка по:</b>
-        <span onClick={() => setOpenSortModal(!openSortModal)}>{options[modalOption]}</span>
+        <span onClick={() => setOpenSortModal(!openSortModal)} > { options[sortModalOptionId] } </span>
+       
       </div>
       {
       openSortModal && (
@@ -33,10 +33,10 @@ const Sort = () => {
           <ul>
             {
               options.map((el,i) =>  <li onClick={() => onClickOption(i)}
-              className={modalOption === i ? 'active':''} 
+              className={sortModalOptionId === i ? 'active':''}
               key={i}>{el}</li> 
               )
-                                    
+
             }
           </ul>
         </div>
