@@ -3,18 +3,21 @@ import Categories from "../components/Categories";
 import Sort from "../components/Sort";
 import Skeleton from "../components/PizzaBlock/Skeleton";
 import PizzaBlock from "../components/PizzaBlock/PizzaBlock";
-
-
-const Home =() =>{
-    const [items, setItems] = React.useState([]);
+const Home =() =>{    const [items, setItems] = React.useState([]);
     const [isLoading, setIsLoading] = React.useState(true);
     const [categoryId,setCategoryId] = React.useState(0);
     const [sortModalOptionId, setSortActiveModalOption ] = React.useState(0);
     const sortTypes = ['популярности','цене','алфавиту'];
+    const categoriesTypes = ['Все', 'Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'];
 
+console.log(sortTypes[sortModalOptionId].популярности )
     React.useEffect(() => {
         setIsLoading(true)
-        fetch("https://63c6738ddcdc478e15c1b17b.mockapi.io/items?category=" + categoryId )
+        fetch(`https://63c6738ddcdc478e15c1b17b.mockapi.io/items${
+            categoryId > 0 ? `?category=${categoryId}` : ''
+        } ?sortBy=${ sortModalOptionId === 0 ? 'rating': '' }`  //TODO create fetch correctly
+            // `?sortBy=${sortTypes[sortModalOptionId]}`
+        )
             .then((response) => {
                 return response.json();
             })
