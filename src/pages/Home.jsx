@@ -9,27 +9,28 @@ const Home = () => {
   const [categoryId, setCategoryId] = React.useState(0);
   const [sortModalOptionId, setSortActiveModalOption] = React.useState(0);
   const sortTypes = ["популярности", "цене", "алфавиту"];
-  const categoriesTypes = [
-    "Все",
-    "Мясные",
-    "Вегетарианская",
-    "Гриль",
-    "Острые",
-    "Закрытые",
-  ];
+  const categoriesTypes = ["Все","Мясные","Вегетарианская","Гриль","Острые", "Закрытые"];
 
-  //    alert(`https://63c6738ddcdc478e15c1b17b.mockapi.io/items?${
-  //     categoryId > 0 ? `category=${categoryId}` : ''}
-  //  &sortBy=${ sortModalOptionId === 0 ? "rating" : ""}  `)
+  function sortNumber(sortModalOptionId) {
+    switch (sortModalOptionId) {
+    case 0:
+        return 'rating'
+    case 1:
+        return 'price'    
+    case 2:
+        return 'title'
+        
+  }
+  }
+// alert(sortNumber(sortModalOptionId))
 
-  console.log(sortTypes[sortModalOptionId].популярности);
-  React.useEffect(() => {
+    React.useEffect(() => {
     setIsLoading(true);
     fetch(`https://63c6738ddcdc478e15c1b17b.mockapi.io/items?${
       categoryId > 0 ? `category=${categoryId}` : ""
-    }&sortBy=${sortModalOptionId === 0 ? "rating" : ""}  //TODO need add sort price and title
+    }&sortBy=${sortNumber(sortModalOptionId)}`)
          
-         `)
+         
       .then((response) => {
         return response.json();
       })
