@@ -1,0 +1,38 @@
+.root {
+  position: relative;
+
+  .input {
+    border: 1px solid rgba($color: #eceaea, $alpha: 0.9);
+    padding: 8px 10px 8px 36px;
+    width: 300px;
+    border-radius: 6px;
+    box-shadow: 3px 3px 16px rgb(247, 247, 247);
+    transition: all 0.3s ease-out;
+
+    &:focus {
+      box-shadow: 3px 3px 16px rgb(210, 208, 208);
+    }
+  }
+
+  .searchIcon {
+    width: 24px;
+    position: absolute;
+    left: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .iconClose {
+    width: 24px;
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    
+
+    &:hover {
+        opacity: 0.2;
+        cursor: pointer;
+    }
+  }
+}
