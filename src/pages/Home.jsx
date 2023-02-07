@@ -43,7 +43,15 @@ const Home = ({ searchValue }) => {
     window.scrollTo(0, 0);
   }, [categoryId, sortModalOptionId]);
 
-  const pizzas = items.map((obj, index) => <PizzaBlock {...obj} key={index} />);
+  const pizzas = items
+  .filter((obj) => {
+    if(obj.title.toLowerCase().includes(searchValue)) {
+      return true
+     }
+     return false
+   }
+  )
+  .map((obj, index) => <PizzaBlock {...obj} key={index} />);
   const skeletons = [...new Array(6)].map((el, index) => <Skeleton key={index} />);
 
   return (
