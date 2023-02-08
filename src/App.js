@@ -8,6 +8,7 @@ import NotFoundBlock from "./components/NotFoundBlock/NotFoundBlock";
 import Home from "./pages/Home";
 import Cart from "./pages/Cart";
 
+
 function App() {
   const [ searchValue, setSearchValue ] = React.useState('');
 
@@ -26,6 +27,7 @@ function App() {
               </Routes>
           </div>
       </div>
+     
     </div>
   );
 }

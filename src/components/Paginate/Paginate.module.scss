@@ -1,0 +1,38 @@
+.root {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+
+  :global {
+
+    .disabled a {
+        color: rgba($color: #000000, $alpha: 0.0);
+    }
+    .selected a {
+      background-color: #fe5f1e ;
+      color: #ffffff;
+
+    }
+    
+}
+
+li {
+      
+    :hover {
+        background-color: #fe5f1e;
+        color:rgb(239, 235, 230)
+      }
+    
+    
+    a {
+        font-size: 1.3rem;
+        margin-right: 10px;
+        border: 1px solid #fe5f1e;
+        border-radius: 50%;
+        padding: 6px 14px;
+        cursor: pointer;
+
+        
+      }
+    }
+  }

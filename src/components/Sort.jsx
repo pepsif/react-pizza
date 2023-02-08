@@ -1,7 +1,7 @@
 import React from "react";
 
 const Sort = ({ sortModalOptionId, setSortActiveModalOption }) => {
-  const options = ['популярности','цене','алфавиту'];
+  const options = ['популярності','ціні','алфавиту'];
   const [openSortModal, setOpenSortModal] = React.useState(false);
 
     const onClickOption = (i) => {

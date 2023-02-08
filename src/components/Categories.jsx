@@ -2,7 +2,7 @@ import React from "react";
 
 const Categories = ({categoryId, setCategoryId}) => {
 
-    let categories = ['Все', 'Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые']
+    let categories = ['Усі', 'Мясні', 'Вегетаріанські', 'Гриль', 'Гострі', 'Закриті']
 
     return (
         <div className="categories">

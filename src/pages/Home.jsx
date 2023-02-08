@@ -3,6 +3,7 @@ import Categories from "../components/Categories";
 import Sort from "../components/Sort";
 import Skeleton from "../components/PizzaBlock/Skeleton";
 import PizzaBlock from "../components/PizzaBlock/PizzaBlock";
+import Paginate from "../components/Paginate/Paginate";
 
 const Home = ({ searchValue }) => {
   const [items, setItems] = React.useState([]);
@@ -24,13 +25,14 @@ const Home = ({ searchValue }) => {
   }
   // alert(sortNumber(sortModalOptionId))
   const sortAscDesc = 0 //TODO need create sort ascending and descending values
+  const search = searchValue ? `&search=${searchValue}` : ''
 
   React.useEffect(() => {
     setIsLoading(true);
     fetch(
       'https://63c6738ddcdc478e15c1b17b.mockapi.io/items'
       +`?${ categoryId > 0 ? `category=${categoryId}` : ""}`
-      +`&sortBy=${sortNumber(sortModalOptionId)}`
+      +`&sortBy=${sortNumber(sortModalOptionId)}` + search
       
     )
       .then((response) => {
@@ -41,17 +43,9 @@ const Home = ({ searchValue }) => {
         setIsLoading(false);
       });
     window.scrollTo(0, 0);
-  }, [categoryId, sortModalOptionId]);
+  }, [categoryId, sortModalOptionId, searchValue] );
 
-  const pizzas = items
-  .filter((obj) => {
-    if(obj.title.toLowerCase().includes(searchValue)) {
-      return true
-     }
-     return false
-   }
-  )
-  .map((obj, index) => <PizzaBlock {...obj} key={index} />);
+  const pizzas = items.map((obj, index) => <PizzaBlock {...obj} key={index} />);
   const skeletons = [...new Array(6)].map((el, index) => <Skeleton key={index} />);
 
   return (
@@ -67,6 +61,8 @@ const Home = ({ searchValue }) => {
       <div className="content__items">
         {isLoading ? skeletons : pizzas }
       </div>
+
+      <Paginate />
          
       </div>
     
