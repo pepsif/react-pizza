@@ -11,7 +11,7 @@
     .selected a {
       background-color: #fe5f1e ;
       color: #ffffff;
-
+      
     }
     
 }
@@ -25,6 +25,7 @@ li {
     
     
     a {
+        transition: all 0.3s ease-out;
         font-size: 1.3rem;
         margin-right: 10px;
         border: 1px solid #fe5f1e;

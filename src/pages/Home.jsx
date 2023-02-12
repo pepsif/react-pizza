@@ -9,6 +9,7 @@ const Home = ({ searchValue }) => {
   const [items, setItems] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
   const [categoryId, setCategoryId] = React.useState(0);
+  const [currentPage, setCurrentPage ] = React.useState(1)
   const [sortModalOptionId, setSortActiveModalOption] = React.useState(0);
   const sortTypes = ["популярности", "цене", "алфавиту"];
   const categoriesTypes = [ "Все","Мясные","Вегетарианская","Гриль", "Острые","Закрытые",];
@@ -25,14 +26,17 @@ const Home = ({ searchValue }) => {
   }
   // alert(sortNumber(sortModalOptionId))
   const sortAscDesc = 0 //TODO need create sort ascending and descending values
-  const search = searchValue ? `&search=${searchValue}` : ''
+  const search = searchValue ? `&search=${searchValue}` : '';
+  
 
   React.useEffect(() => {
     setIsLoading(true);
     fetch(
       'https://63c6738ddcdc478e15c1b17b.mockapi.io/items'
       +`?${ categoryId > 0 ? `category=${categoryId}` : ""}`
-      +`&sortBy=${sortNumber(sortModalOptionId)}` + search
+      +`&sortBy=${sortNumber(sortModalOptionId)}`
+      + search + `&page=${currentPage}&limit=4`
+
       
     )
       .then((response) => {
@@ -43,7 +47,7 @@ const Home = ({ searchValue }) => {
         setIsLoading(false);
       });
     window.scrollTo(0, 0);
-  }, [categoryId, sortModalOptionId, searchValue] );
+  }, [categoryId, sortModalOptionId, searchValue, currentPage] );
 
   const pizzas = items.map((obj, index) => <PizzaBlock {...obj} key={index} />);
   const skeletons = [...new Array(6)].map((el, index) => <Skeleton key={index} />);
@@ -62,7 +66,7 @@ const Home = ({ searchValue }) => {
         {isLoading ? skeletons : pizzas }
       </div>
 
-      <Paginate />
+      <Paginate setCurrentPage={setCurrentPage}/>
          
       </div>
     

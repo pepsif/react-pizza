@@ -8,14 +8,27 @@ import NotFoundBlock from "./components/NotFoundBlock/NotFoundBlock";
 import Home from "./pages/Home";
 import Cart from "./pages/Cart";
 
+import { useSelector, useDispatch } from 'react-redux';
+import { decrement, increment } from './redux/slices/counterSlice';
+
 
 function App() {
   const [ searchValue, setSearchValue ] = React.useState('');
 
-  console.log(searchValue)
+  const count = useSelector((state) => state.counter.value)
+  const dispatch = useDispatch()
 
+  
   return (
     <div className="wrapper">
+      <div>
+         <button className={() => dispatch(increment())}>increase</button>
+         <span>{count}</span>
+         <button onClick={() => dispatch(decrement())}>decrease</button>
+      </div>
+
+
+
       <Header searchValue={searchValue} setSearchValue={setSearchValue}/>
       <div className="content">
           <div className="container">
