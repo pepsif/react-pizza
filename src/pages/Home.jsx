@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 import { useSelector, useDispatch } from 'react-redux'
 import { setCategoryId,setModalOptionId } from "../redux/slices/filterSlice";
 
@@ -12,7 +13,7 @@ import Paginate from "../components/Paginate/Paginate";
 const Home = ({ searchValue }) => {
   const categoryId = useSelector(state => state.filterSlice.categoryId);
   const modalOptionId = useSelector(state => state.filterSlice.sortModalOptionId);
-  // const {modalOptionId,categoryId} = useSelector(state => state.filterSlice);
+  // const {modalOptionId,categoryId} = useSelector(state => state.filterSlice); TODO need create from 2 useSelectors in one
   const dispatch = useDispatch();
 
   const changeCategoryId = (id) => {
@@ -45,20 +46,16 @@ const Home = ({ searchValue }) => {
   
   React.useEffect(() => {
     setIsLoading(true);
-    fetch(
-      'https://63c6738ddcdc478e15c1b17b.mockapi.io/items'
-      +`?${ categoryId > 0 ? `category=${categoryId}` : ""}`
-      +`&sortBy=${sortNumber(modalOptionId)}`
-      + search + `&page=${currentPage}&limit=4`
-
-    )
-      .then((response) => {
-        return response.json();
-      })
-      .then((arr) => {
-        setItems(arr);
+   
+    axios.get('https://63c6738ddcdc478e15c1b17b.mockapi.io/items'
+       +`?${ categoryId > 0 ? `category=${categoryId}` : ""}`
+       +`&sortBy=${sortNumber(modalOptionId)}`
+       + search + `&page=${currentPage}&limit=4`)
+       .then(response => {
+        setItems(response.data);
         setIsLoading(false);
-      });
+       })
+
     window.scrollTo(0, 0);
   }, [categoryId, modalOptionId, searchValue, currentPage] );
 
