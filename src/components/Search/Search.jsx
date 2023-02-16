@@ -1,21 +1,33 @@
 import React from "react";
 import styles from "./Search.module.scss";
+
+import { useSelector, useDispatch } from 'react-redux'
+import { setSearchValue } from "../../redux/slices/searchPizzasSlice";
+
 import debounce from "lodash.debounce";
 
-const Search = ({ searchValue, setSearchValue }) => {
+
+const Search = () => {
  const inputRef = React.useRef();
+ const dispatch = useDispatch();
+ const searchValue = useSelector(state => state.searchPizzasSlice.searchValue);
+
 
  const onClickClear = () => {
-  setSearchValue('');
-  inputRef.current.focus()
+  dispatch(setSearchValue(''));
+  inputRef.current.focus();
  }
+const updateSearchValue = (value) => {
+  console.log(value) 
+ dispatch(setSearchValue(value));
+}
 
-
+// setSearchValue(event.target.value)
   return (
     <div className={styles.root}>
       <input
         ref={inputRef}
-        onChange={(event) => setSearchValue(event.target.value)}
+        onChange={(event) => updateSearchValue(event.target.value)}
         value={searchValue}
         className={styles.input}
         placeholder="Пошук Піцци...."

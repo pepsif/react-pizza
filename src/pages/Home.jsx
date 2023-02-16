@@ -3,6 +3,7 @@ import axios from "axios";
 import { useSelector, useDispatch } from 'react-redux'
 import { setCategoryId,setModalOptionId } from "../redux/slices/filterSlice";
 
+
 import Categories from "../components/Categories";
 import Sort from "../components/Sort";
 import Skeleton from "../components/PizzaBlock/Skeleton";
@@ -10,9 +11,10 @@ import PizzaBlock from "../components/PizzaBlock/PizzaBlock";
 import Paginate from "../components/Paginate/Paginate";
 
 
-const Home = ({ searchValue }) => {
+const Home = () => {
   const categoryId = useSelector(state => state.filterSlice.categoryId);
   const modalOptionId = useSelector(state => state.filterSlice.sortModalOptionId);
+  const searchValue = useSelector(state => state.searchPizzasSlice.searchValue);
   // const {modalOptionId,categoryId} = useSelector(state => state.filterSlice); TODO need create from 2 useSelectors in one
   const dispatch = useDispatch();
 
