@@ -8,27 +8,40 @@ import debounce from "lodash.debounce";
 
 
 const Search = () => {
- const inputRef = React.useRef();
- const dispatch = useDispatch();
- const searchValue = useSelector(state => state.searchPizzasSlice.searchValue);
+ const [ localeSearchValue, setLocalSearchValue ] = React.useState('')
 
+  const debounceUpdateSearchValue = React.useCallback(
+    debounce((value) => {
+    console.log("test debounse",value)
+    dispatch(setSearchValue(value));
+  },2000),
+  [],
+  )
+  
+ const inputRef = React.useRef()
+ const dispatch = useDispatch()
+ const searchValue = useSelector(state => state.searchPizzasSlice.searchValue)
 
  const onClickClear = () => {
-  dispatch(setSearchValue(''));
-  inputRef.current.focus();
+  dispatch(setSearchValue(''))
+  setLocalSearchValue('')
+  inputRef.current.focus()
  }
 const updateSearchValue = (value) => {
-  console.log(value) 
- dispatch(setSearchValue(value));
+  // console.log(localeSearchValue)
+    setLocalSearchValue( value )
+    debounceUpdateSearchValue(value)
+
 }
 
-// setSearchValue(event.target.value)
+
   return (
     <div className={styles.root}>
+     
       <input
         ref={inputRef}
         onChange={(event) => updateSearchValue(event.target.value)}
-        value={searchValue}
+        value={localeSearchValue}
         className={styles.input}
         placeholder="Пошук Піцци...."
       />
