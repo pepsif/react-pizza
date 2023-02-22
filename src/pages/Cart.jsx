@@ -75,7 +75,7 @@ const Cart = () => {
             />
           </svg>
 
-          <span>Очистить корзину</span>
+          <span>Очистити корзину</span>
         </div>
       </div>
       <div className="content__items">

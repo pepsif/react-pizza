@@ -1,5 +1,7 @@
 import React from "react";
 import axios from "axios";
+import qs from "qs";
+import { useNavigate } from "react-router-dom"
 import { useSelector, useDispatch } from 'react-redux'
 import { setCategoryId,setModalOptionId } from "../redux/slices/filterSlice";
 
@@ -12,6 +14,7 @@ import Paginate from "../components/Paginate/Paginate";
 
 
 const Home = () => {
+  const navigate = useNavigate();
   const categoryId = useSelector(state => state.filterSlice.categoryId);
   const modalOptionId = useSelector(state => state.filterSlice.sortModalOptionId);
   const searchValue = useSelector(state => state.searchPizzasSlice.searchValue);
@@ -29,8 +32,7 @@ const Home = () => {
   const [isLoading, setIsLoading] = React.useState(true);
   const [currentPage, setCurrentPage ] = React.useState(1)
   
-  
-  function sortNumber(modalOptionId) {
+    function sortNumber(modalOptionId) {
     switch (modalOptionId) {
       case 0:
         return "rating";
@@ -60,6 +62,18 @@ const Home = () => {
 
     window.scrollTo(0, 0);
   }, [categoryId, modalOptionId, searchValue, currentPage] );
+
+  React.useEffect(() => {
+   const queryString = qs.stringify({
+    sortProperty : modalOptionId,
+    categoryId,
+    currentPage
+   })
+
+  //  console.log(queryString)
+   navigate(`?${queryString}`)
+
+  }, [categoryId, modalOptionId, currentPage] )
 
   const pizzas = items.map((obj, index) => <PizzaBlock {...obj} key={index} />);
   const skeletons = [...new Array(6)].map((el, index) => <Skeleton key={index} />);

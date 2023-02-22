@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+
 const initialState = {
   categoryId: 0,
   sortModalOptionId: 0,
