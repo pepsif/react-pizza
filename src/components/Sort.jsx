@@ -17,7 +17,7 @@ const Sort = ({ sortModalOptionId, changeSortOption }) => {
     const handleClickOutside = event => {
       if(!event.composedPath().includes(sortRef.current)) {
         setOpenSortModal(false)
-         console.log('click outside')
+        
       }
 
      

@@ -6,9 +6,9 @@ import Search from "./Search/Search";
 import { useSelector } from "react-redux";
 
 const Header = () => {
-const { items, totalPrice }= useSelector(state => state.cartSlice );
+const { items, totalPrice, totalCount } = useSelector(state => state.cartSlice );
 
-console.log(items,totalPrice)
+// console.log(items,totalPrice)
 
     return(
       <div className = "header">
@@ -58,7 +58,7 @@ console.log(items,totalPrice)
                   strokeLinejoin="round"
                 />
               </svg>
-              <span>{items.length}</span>
+              <span>{totalCount}</span>
             </Link>
           </div>
         </div>
