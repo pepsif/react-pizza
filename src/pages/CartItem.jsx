@@ -1,6 +1,20 @@
 import React from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { increaseCartItem, decreaseCartItem } from '../redux/slices/cartSlice';
 
  const CartItem = ({ id, title, type, price, count, imageUrl }) => {
+  const dispatch = useDispatch();
+  const pizzasArr = useSelector(state => state.cartSlice.items);
+  
+
+  
+  const pizzaIncrease = () => {
+   dispatch(increaseCartItem(id))
+  }
+  const pizzaDecrease = () => {
+    dispatch(decreaseCartItem(id))
+   }
+
   return (
     <div className="cart__item">
           <div className="cart__item-img">
@@ -15,7 +29,7 @@ import React from 'react'
             <p>{type}, 26 см.</p>
           </div>
           <div className="cart__item-count">
-            <div className="button button--outline button--circle cart__item-count-minus">
+            <div className="button button--outline button--circle cart__item-count-minus" onClick={pizzaDecrease}>
               <svg
                 width="10"
                 height="10"
@@ -34,7 +48,8 @@ import React from 'react'
               </svg>
             </div>
             <b>{count}</b>
-            <div className="button button--outline button--circle cart__item-count-plus">
+            
+            <div className="button button--outline button--circle cart__item-count-plus" onClick={pizzaIncrease}>
               <svg
                 width="10"
                 height="10"
