@@ -58,7 +58,7 @@ const { items, totalPrice, totalCount } = useSelector(state => state.cartSlice )
                   strokeLinejoin="round"
                 />
               </svg>
-              <span>{totalCount}</span>
+              <span>{items.length} items</span>
             </Link>
           </div>
         </div>

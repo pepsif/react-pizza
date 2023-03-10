@@ -32,17 +32,22 @@ export const cartSlice = createSlice({
     },
     increaseCartItem(state, action) {
       state.items.map((el) => {
-        if (el.id === action.payload) {
+        if (el.id === action.payload.id) {
           el.count += 1;
+          state.totalPrice += action.payload.price;
+         
         }
       });
     },
     decreaseCartItem(state, action) {
       state.items.map((el) => {
-        if (el.id === action.payload) {
+        if (el.id === action.payload.id) {
           el.count -= 1;
+          state.totalPrice -= action.payload.price;
           if (el.count < 0) {
             el.count = 0;
+            state.totalPrice = 0;
+            
           }
         }
       });

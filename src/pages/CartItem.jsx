@@ -6,13 +6,17 @@ import { increaseCartItem, decreaseCartItem } from '../redux/slices/cartSlice';
   const dispatch = useDispatch();
   const pizzasArr = useSelector(state => state.cartSlice.items);
   
-
+  const item = {
+    id,
+    price
+  }
   
   const pizzaIncrease = () => {
-   dispatch(increaseCartItem(id))
+   dispatch(increaseCartItem(item))
+  
   }
   const pizzaDecrease = () => {
-    dispatch(decreaseCartItem(id))
+    dispatch(decreaseCartItem(item))
    }
 
   return (
