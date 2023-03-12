@@ -9,6 +9,9 @@ import debounce from "lodash.debounce";
 
 const Search = () => {
  const [ localeSearchValue, setLocalSearchValue ] = React.useState('')
+ const inputRef = React.useRef()
+ const dispatch = useDispatch()
+ const searchValue = useSelector(state => state.searchPizzasSlice.searchValue)
 
   const debounceUpdateSearchValue = React.useCallback(
     debounce((value) => {
@@ -17,11 +20,7 @@ const Search = () => {
   },2000),
   [],
   )
-  
- const inputRef = React.useRef()
- const dispatch = useDispatch()
- const searchValue = useSelector(state => state.searchPizzasSlice.searchValue)
-
+ 
  const onClickClear = () => {
   dispatch(setSearchValue(''))
   setLocalSearchValue('')

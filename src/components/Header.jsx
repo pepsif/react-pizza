@@ -6,9 +6,10 @@ import Search from "./Search/Search";
 import { useSelector } from "react-redux";
 
 const Header = () => {
+
+  
 const { items, totalPrice, totalCount } = useSelector(state => state.cartSlice );
 
-// console.log(items,totalPrice)
 
     return(
       <div className = "header">
