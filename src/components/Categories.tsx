@@ -1,6 +1,11 @@
 import React from "react";
+import {setCategoryId} from "../redux/slices/filterSlice";
 
-const Categories = ({categoryId, changeCategoryId}) => {
+interface CategoriesProps {
+    categoryId: number;
+    changeCategoryId: (index: number) => void;
+}
+const Categories: React.FC<CategoriesProps> = ({categoryId, changeCategoryId}) => {
 
     let categories = ['Усі', 'Мясні', 'Вегетаріанські', 'Гриль', 'Гострі', 'Закриті']
 

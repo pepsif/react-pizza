@@ -60,7 +60,7 @@ const Home = () => {
         setIsLoading(false);
        })
 
-    window.scrollTo(0, 0);
+    // window.scrollTo(0, 0);
   }, [categoryId, modalOptionId, searchValue, currentPage] );
 
   React.useEffect(() => {
